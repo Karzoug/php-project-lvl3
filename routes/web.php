@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// добавить новый
+Route::get('/', 'App\Http\Controllers\UrlController@create')->name('urls.create');
+Route::post('urls', 'App\Http\Controllers\UrlController@store')->name('urls.store');
+
+// список всех
+Route::get('urls', 'App\Http\Controllers\UrlController@index')->name('urls.index');
+
+// просмотр одного
+Route::get('urls/{id}', 'App\Http\Controllers\UrlController@show')->name('urls.show');
+
+//Route::resource('urls', UrlController::class);
