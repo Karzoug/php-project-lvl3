@@ -15,7 +15,9 @@ jobs:
           node-version: '14'
       - run: npm install
       - run: npm test
-      - name: Install
+      - name: Setup project
         run: make setup
       - name: Run linter
         run: make lint
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        run: make test
