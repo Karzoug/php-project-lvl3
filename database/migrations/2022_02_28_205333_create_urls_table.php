@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

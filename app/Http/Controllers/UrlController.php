@@ -38,12 +38,15 @@ class UrlController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate($request, [
-            'name' => 'required|max:255|unique:urls',
+            'name' => 'required|max:255|unique:urls|url',
         ]);
 
         $url = new Url();
         $url->fill($data);
         $url->save();
+
+        flash('Страница успешно добавлена')->success();
+         
 
         return redirect()
             ->route('urls.index');
