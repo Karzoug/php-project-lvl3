@@ -11,7 +11,6 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Дата проверки</th>
         <th>Код ответа</th>
         <th>h1</th>
         <th>title</th>
@@ -21,12 +20,11 @@
     @foreach ($url->checks as $check)
     <tr>
         <td>{{$check->id}}</td>
-        <td>{{$check->created_at}}</td>
         <td>{{$check->status_code}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{$check->h1}}</td>
+        <td>{{$check->title}}</td>
+        <td>{{Str::limit($check->description, 35)}}</td>
+        <td>{{$check->created_at}}</td>
     </tr>
     @endforeach
 </table>
