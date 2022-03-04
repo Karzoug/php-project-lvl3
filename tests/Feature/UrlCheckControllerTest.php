@@ -15,8 +15,7 @@ class UrlCheckControllerTest extends TestCase
 
     public function testStore()
     {
-        Http::fake();
-
+        Http::fake(['*' => Http::response('<title>World</title>\n<h1>Hello World</h1>', 200)]);
         $url = Url::factory()->create();
 
         $response = $this->post(route('url_checks.store', $url->id));
@@ -25,6 +24,7 @@ class UrlCheckControllerTest extends TestCase
 
         $this->assertDatabaseHas('url_checks', [
             'url_id' => $url->id,
+            'h1' => 'Hello World'
         ]);
     }
 }
