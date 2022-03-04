@@ -13,7 +13,12 @@
     <tr>
         <td>{{$url->id}}</td>
         <td><a href="{{route('urls.show', $url->id)}}">{{$url->name}}</a></td>
-        <td>{{$url->updated_at}}</td>
+        <td>
+@php
+        $check = $url->latestCheck;
+        echo (empty($check)) ? "" : $check->created_at;
+@endphp
+        </td>
         <td>200</td>
     </tr>
     @endforeach

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,9 @@ Route::post('urls', 'App\Http\Controllers\UrlController@store')->name('urls.stor
 
 // список всех
 Route::get('urls', 'App\Http\Controllers\UrlController@index')->name('urls.index');
+
+// добавить новую проверку
+Route::post('urls/{id}/checks', 'App\Http\Controllers\UrlCheckController@store')->name('url_checks.store');
 
 // просмотр одного
 Route::get('urls/{id}', 'App\Http\Controllers\UrlController@show')->name('urls.show');
