@@ -7,21 +7,26 @@ use App\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ArticleControllerTest extends TestCase
+class UrlControllerTest extends TestCase
 {
     use DatabaseTransactions;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Url::factory()->count(2)->create();
+        
+        Url::factory()
+        ->hasChecks(1)
+        ->count(2)
+        ->create();
     }
 
     public function testIndex()
     {
         $response = $this->get(route('urls.index'));
         $response->assertOk();
-        $response->assertViewHas('urls', Url::all());
+        $response->assertViewHasAll(['urls']);
+        //$response->assertViewHas('urls', Url::all());
     }
 
     public function testCreate()
