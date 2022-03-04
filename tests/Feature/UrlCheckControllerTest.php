@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Feature;
+use Illuminate\Support\Facades\Http;
 
 use Tests\TestCase;
 use App\Models\UrlCheck;
@@ -14,16 +15,16 @@ class UrlCheckControllerTest extends TestCase
 
     public function testStore()
     {
-        $url = Url::factory()->create();
-        $data = UrlCheck::factory()
-        ->for($url)
-        ->make()
-        ->only('title');
+        Http::fake();
 
-        $response = $this->post(route('url_checks.store', $url->id), $data);
+        $url = Url::factory()->create();
+
+        $response = $this->post(route('url_checks.store', $url->id));
         $response->assertRedirect(route('urls.show', $url->id));
         $response->assertSessionHasNoErrors();
 
-        $this->assertDatabaseHas('url_checks', $data);
+        $this->assertDatabaseHas('url_checks', [
+            'url_id' => $url->id,
+        ]);
     }
 }

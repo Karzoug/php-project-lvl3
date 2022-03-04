@@ -10,16 +10,14 @@
         <th>Код ответа</th>
     </tr>
     @foreach ($urls as $url)
+@php
+        $check = $url->latestCheck;
+@endphp
     <tr>
         <td>{{$url->id}}</td>
         <td><a href="{{route('urls.show', $url->id)}}">{{$url->name}}</a></td>
-        <td>
-@php
-        $check = $url->latestCheck;
-        echo (empty($check)) ? "" : $check->created_at;
-@endphp
-        </td>
-        <td>200</td>
+        <td>{{ $check->created_at  ?? ""}}</td>
+        <td>{{ $check->status_code ?? "" }}</td>
     </tr>
     @endforeach
 </table>
