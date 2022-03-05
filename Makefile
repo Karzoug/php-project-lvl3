@@ -5,14 +5,6 @@ setup:
 	composer install
 	cp -n .env.example .env|| true
 	php artisan key:gen --ansi
-	php artisan migrate
-	php artisan db:seed
-	npm ci
-
-setup-ci:
-	composer install
-	cp -n .env.ci .env|| true
-	php artisan key:gen --ansi
 	touch database/database.sqlite
 	php artisan migrate
 	php artisan db:seed
