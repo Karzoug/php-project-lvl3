@@ -40,16 +40,7 @@
     </div>
 
     <main class="flex-grow-1">
-        <div class="container-lg mt-3">
-            <div class="row">
-                <div class="col-12 col-md-10 col-lg-8 mx-auto border rounded-3 bg-light p-5">
-                    <h1>@yield('header')</h1>
-                    <div>
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-        </div>
+        @yield('content')
     </main>
 
     <footer class="border-top py-3 mt-5 flex-shrink-0">
