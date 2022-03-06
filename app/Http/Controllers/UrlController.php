@@ -14,7 +14,7 @@ class UrlController extends Controller
      */
     public function index()
     {
-        $urls = Url::all();
+        $urls = Url::paginate(15);
         return view('url.index', compact('urls'));
     }
 
